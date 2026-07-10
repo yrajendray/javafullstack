@@ -1,13 +1,12 @@
 package com.example.demo.service;
 
-
 import com.example.demo.Entity.User;
 import com.example.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.*;
-import org.springframework.security.core.userdetails.User.UserBuilder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-	UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email)
@@ -25,13 +24,19 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .orElseThrow(() ->
                         new UsernameNotFoundException("User not found"));
 
-        UserBuilder builder = org.springframework.security.core.userdetails.User
-                .withUsername(user.getEmail());
+        String role = "USER";
 
-        builder.password(user.getPassword());
+        if (user.getRoleId() == 1) {
+            role = "ADMIN";
+        } else if (user.getRoleId() == 2) {
+            role = "USER";
+        }
 
-        builder.roles("USER");
-
-        return builder.build();
+        return org.springframework.security.core.userdetails.User
+                .builder()
+                .username(user.getEmail())
+                .password(user.getPassword())
+                .roles(role)
+                .build();
     }
 }
