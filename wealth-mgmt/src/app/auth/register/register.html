@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h3>Register</h3>
+    </div>
+
+    <div class="card-body">
+
+      <div class="mb-3">
+        <label>First Name</label>
+        <input class="form-control"
+               [(ngModel)]="registerRequest.firstName">
+      </div>
+
+      <div class="mb-3">
+        <label>Last Name</label>
+        <input class="form-control"
+               [(ngModel)]="registerRequest.lastName">
+      </div>
+
+      <div class="mb-3">
+        <label>Email</label>
+        <input class="form-control"
+               [(ngModel)]="registerRequest.email">
+      </div>
+
+      <div class="mb-3">
+        <label>Password</label>
+        <input type="password"
+               class="form-control"
+               [(ngModel)]="registerRequest.password">
+      </div>
+
+      <button class="btn btn-success w-100"
+              (click)="register()">
+        Register
+      </button>
+
+    </div>
+  </div>
+</div>

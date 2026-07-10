@@ -1,0 +1,62 @@
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between mb-3">
+        <h3>Customers</h3>
+
+        <button
+            class="btn btn-primary"
+            routerLink="/customer/add">
+            Add Customer
+        </button>
+    </div>
+
+    <table class="table table-bordered table-striped">
+
+        <thead class="table-dark">
+
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Status</th>
+            <th width="180">Action</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr *ngFor="let customer of customers">
+
+            <td>{{customer.customerId}}</td>
+            <td>{{customer.firstName}}</td>
+            <td>{{customer.lastName}}</td>
+            <td>{{customer.email}}</td>
+            <td>{{customer.phone}}</td>
+            <td>{{customer.status}}</td>
+
+            <td>
+
+                <button
+                    class="btn btn-warning btn-sm me-2"
+                    (click)="editCustomer(customer.customerId!)">
+                    Edit
+                </button>
+
+                <button
+                    class="btn btn-danger btn-sm"
+                    (click)="deleteCustomer(customer.customerId!)">
+                    Delete
+                </button>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>

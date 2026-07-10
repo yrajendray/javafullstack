@@ -1,0 +1,112 @@
+<div class="container-fluid">
+
+    <!-- Header -->
+    <div class="row bg-primary text-white align-items-center p-3 shadow">
+
+        <div class="col-md-6">
+            <h3 class="mb-0">
+                💰 Wealth Management System
+            </h3>
+        </div>
+
+        <div class="col-md-6 text-end">
+
+            <span class="me-3">
+                Welcome,
+                <strong>Admin</strong>
+            </span>
+
+            <button class="btn btn-light btn-sm">
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <!-- Sidebar -->
+
+        <div class="col-md-2 bg-dark text-white vh-100 p-0">
+
+            <div class="list-group rounded-0">
+
+                <a
+                    routerLink="/home"
+                    routerLinkActive="active"
+                    class="list-group-item list-group-item-action bg-dark text-white border-secondary">
+
+                    🏠 Dashboard
+
+                </a>
+
+                <a
+                    routerLink="/customers"
+                    routerLinkActive="active"
+                    class="list-group-item list-group-item-action bg-dark text-white border-secondary">
+
+                    👥 Customers
+
+                </a>
+
+                <a
+                    routerLink="/portfolios"
+                    routerLinkActive="active"
+                    class="list-group-item list-group-item-action bg-dark text-white border-secondary">
+
+                    📁 Portfolios
+
+                </a>
+
+                <a
+                    routerLink="/investments"
+                    routerLinkActive="active"
+                    class="list-group-item list-group-item-action bg-dark text-white border-secondary">
+
+                    💵 Investments
+
+                </a>
+
+                <a
+                    routerLink="/reports"
+                    routerLinkActive="active"
+                    class="list-group-item list-group-item-action bg-dark text-white border-secondary">
+
+                    📊 Reports
+
+                </a>
+
+                <a
+                    routerLink="/users"
+                    routerLinkActive="active"
+                    class="list-group-item list-group-item-action bg-dark text-white border-secondary">
+
+                    👤 Users
+
+                </a>
+
+                <a
+                    routerLink="/roles"
+                    routerLinkActive="active"
+                    class="list-group-item list-group-item-action bg-dark text-white border-secondary">
+
+                    🔐 Roles
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Main Content -->
+
+        <div class="col-md-10 p-4 bg-light">
+
+            <router-outlet></router-outlet>
+
+        </div>
+
+    </div>
+
+</div>

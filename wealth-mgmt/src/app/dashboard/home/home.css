@@ -1,0 +1,11 @@
+.card{
+    margin-top:20px;
+}
+
+.nav-item{
+    cursor:pointer;
+}
+
+.nav-item:hover{
+    color:yellow;
+}
