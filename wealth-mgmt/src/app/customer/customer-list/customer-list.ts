@@ -1,9 +1,15 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 import { CustomerService } from '../../services/customer';
 import { Customer } from '../../models/customer';
+
+
+import { ChangeDetectorRef } from '@angular/core';
+
+
+
 
 @Component({
   selector: 'app-customer-list',
@@ -14,36 +20,80 @@ import { Customer } from '../../models/customer';
 })
 export class CustomerListComponent implements OnInit {
 
-  customers: Customer[] = [];
+customers: any[] = [];
 
-  private customerService = inject(CustomerService);
+title = 'Customer List Component';
+
+  private service = inject(CustomerService);
   private router = inject(Router);
 
+  private cdr = inject(ChangeDetectorRef);
+
   ngOnInit(): void {
-    this.loadCustomers();
+     console.log('Customer List Component Loaded');
+
+      this.loadCustomers();
+
+     
   }
 
-  loadCustomers(): void {
-    this.customerService.getAllCustomers().subscribe({
-      next: (data) => {
-        this.customers = data;
-      },
-      error: (err) => {
-        console.error('Error loading customers', err);
-      }
-    });
-  }
+  
+ngDoCheck() {
+  console.log('Current Customers:', this.customers);
+}
 
-  editCustomer(id: number): void {
+
+ loadCustomers() {
+
+  this.service.getAllCustomers().subscribe({
+
+    next: (data: any) => {
+
+      console.log("Response:", data);
+
+      this.customers = [...data];
+      this.cdr.detectChanges();
+
+      console.log("Assigned:", this.customers);
+
+      
+setTimeout(() => {
+    console.log('After 2 seconds:', this.customers);
+    // this.test();
+  }, 2000);
+
+
+    },
+
+    error: (err) => {
+
+      console.error(err);
+
+    }
+
+  });
+
+}
+
+  edit(id: number) {
     this.router.navigate(['/customer/edit', id]);
   }
 
-  deleteCustomer(id: number): void {
-    if (confirm('Are you sure you want to delete this customer?')) {
-      this.customerService.deleteCustomer(id).subscribe({
-        next: () => this.loadCustomers(),
-        error: (err) => console.error(err)
+  delete(id: number) {
+
+    if(confirm('Delete Customer?')){
+
+      this.service.deleteCustomer(id).subscribe(()=>{
+          this.loadCustomers();
       });
+
     }
+
   }
+
+  test() {
+  console.log("Customers:", this.customers);
+  alert("Length = " + this.customers.length);
+}
+
 }

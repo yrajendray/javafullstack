@@ -2,20 +2,25 @@ export interface Customer {
 
   customerId?: number;
 
-  firstName: string;
+  userId?: number;
 
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
 
-  email: string;
+  panNumber?: string;
+  aadhaarNumber?: string;
 
-  phone: string;
+  dob?: string;
+  gender?: string;
 
-  panNumber: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  pincode?: string;
 
-  aadhaarNumber: string;
-
-  dateOfBirth: string;
-
-  status: string;
+  riskProfile?: string;
+  annualIncome?: number;
 
 }

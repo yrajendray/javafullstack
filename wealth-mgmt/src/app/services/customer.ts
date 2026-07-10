@@ -19,7 +19,7 @@ export class CustomerService {
   getAllCustomers(): Observable<Customer[]> {
 
     return this.http.get<Customer[]>(
-      `${this.apiUrl}/customers`
+      `${this.apiUrl}/api/customers`
     );
 
   }
@@ -27,7 +27,7 @@ export class CustomerService {
   getCustomerById(id:number): Observable<Customer>{
 
       return this.http.get<Customer>(
-        `${this.apiUrl}/customers/${id}`
+        `${this.apiUrl}/api/customers/${id}`
       );
 
   }
@@ -35,7 +35,7 @@ export class CustomerService {
   saveCustomer(customer:Customer):Observable<Customer>{
 
       return this.http.post<Customer>(
-        `${this.apiUrl}/customers`,
+        `${this.apiUrl}/api/customers`,
         customer
       );
 
@@ -44,7 +44,7 @@ export class CustomerService {
   updateCustomer(id:number,customer:Customer){
 
       return this.http.put(
-        `${this.apiUrl}/customers/${id}`,
+        `${this.apiUrl}/api/customers/${id}`,
         customer
       );
 
@@ -53,7 +53,7 @@ export class CustomerService {
   deleteCustomer(id:number){
 
       return this.http.delete(
-        `${this.apiUrl}/customers/${id}`
+        `${this.apiUrl}/api/customers/${id}`
       );
 
   }

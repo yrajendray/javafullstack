@@ -27,17 +27,30 @@ export class LoginComponent {
 
   login(): void {
 
+    // Remove old token before login
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+
     this.authService.login(this.loginRequest).subscribe({
 
-      next: (response) => {
+      next: (response: any) => {
 
+        console.log('Login Response:', response);
+
+        // Save JWT Token
         this.authService.saveToken(response.token);
 
+        // Save Username
+        localStorage.setItem('username', this.loginRequest.username);
+
+        // Redirect to Home
         this.router.navigate(['/home']);
 
       },
 
-      error: () => {
+      error: (err) => {
+
+        console.error(err);
 
         this.errorMessage = 'Invalid Username or Password';
 

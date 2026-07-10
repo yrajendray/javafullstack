@@ -1,22 +1,22 @@
-import { CanActivateFn } from '@angular/router';
-import { inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
+import { inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 export const authGuard: CanActivateFn = () => {
 
   const router = inject(Router);
+  const platformId = inject(PLATFORM_ID);
+
+  // Prevent localStorage access during SSR
+  if (!isPlatformBrowser(platformId)) {
+    return true;
+  }
 
   const token = localStorage.getItem('token');
-
-  console.log('JWT Token:', token);
 
   if (token) {
     return true;
   }
 
-  console.log('No token found. Redirecting to login.');
-
-  router.navigate(['/login']);
-
-  return false;
+  return router.createUrlTree(['/login']);
 };
