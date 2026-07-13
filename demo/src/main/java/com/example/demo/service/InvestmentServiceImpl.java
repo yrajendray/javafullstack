@@ -31,9 +31,12 @@ public class InvestmentServiceImpl implements InvestmentService {
     @Override
     public InvestmentResponse save(InvestmentRequest request) {
 
+    	System.out.println("Portfolio Id :"+request.getPortfolioId());
         Portfolio portfolio = portfolioRepository.findById(request.getPortfolioId())
                 .orElseThrow(() -> new RuntimeException("Portfolio not found"));
 
+        request.setInvestmentTypeId(1);
+        
         InvestmentType investmentType = investmentTypeRepository.findById(request.getInvestmentTypeId())
                 .orElseThrow(() -> new RuntimeException("Investment Type not found"));
 
