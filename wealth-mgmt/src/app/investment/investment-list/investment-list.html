@@ -1,0 +1,121 @@
+<div class="card shadow">
+
+    <div class="card-header bg-primary text-white">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <h4 class="mb-0">Investment Management</h4>
+
+            <button
+                class="btn btn-light"
+                routerLink="/investment/add">
+
+                <i class="bi bi-plus-circle"></i>
+                Add Investment
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-striped table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Portfolio</th>
+                    <th>Investment</th>
+                    <th>Type</th>
+                    <th>Quantity</th>
+                    <th>Current Price</th>
+                    <th>Total Value</th>
+                    <th>Status</th>
+                    <th width="170">Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @for (i of investments; track i.investmentId) {
+
+                <tr>
+
+                    <td>{{ i.investmentId }}</td>
+
+                    <td>{{ i.portfolioName }}</td>
+
+                    <td>{{ i.investmentName }}</td>
+
+                    <td>{{ i.investmentType }}</td>
+
+                    <td>{{ i.quantity }}</td>
+
+                    <td>{{ i.currentPrice | currency:'INR' }}</td>
+
+                    <td>{{ i.totalValue | currency:'INR' }}</td>
+
+                    <td>
+
+                        <span
+                            class="badge"
+                            [ngClass]="{
+                              'bg-success': i.status === 'Active',
+                              'bg-danger': i.status === 'Inactive'
+                            }">
+
+                            {{ i.status }}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="btn btn-warning btn-sm me-2"
+                            (click)="edit(i.investmentId!)">
+
+                            <i class="bi bi-pencil"></i>
+
+                        </button>
+
+                        <button
+                            class="btn btn-danger btn-sm"
+                            (click)="delete(i.investmentId!)">
+
+                            <i class="bi bi-trash"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                } @empty {
+
+                <tr>
+
+                    <td colspan="9" class="text-center">
+
+                        No Investments Found
+
+                    </td>
+
+                </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

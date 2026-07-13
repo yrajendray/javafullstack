@@ -1,0 +1,163 @@
+<div class="card shadow">
+
+    <div class="card-header bg-primary text-white">
+
+        <h4>{{ isEdit ? 'Edit Investment' : 'Add Investment' }}</h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <form (ngSubmit)="saveInvestment()">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">Portfolio ID</label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        [(ngModel)]="investment.portfolioId"
+                        name="portfolioId"
+                        required>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">Investment Name</label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="investment.investmentName"
+                        name="investmentName"
+                        required>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">Investment Type</label>
+
+                    <select
+                        class="form-select"
+                        [(ngModel)]="investment.investmentType"
+                        name="investmentType">
+
+                        <option value="">Select</option>
+                        <option value="Stock">Stock</option>
+                        <option value="Mutual Fund">Mutual Fund</option>
+                        <option value="Bond">Bond</option>
+                        <option value="Fixed Deposit">Fixed Deposit</option>
+                        <option value="Gold">Gold</option>
+                        <option value="ETF">ETF</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">Purchase Date</label>
+
+                    <input
+                        type="date"
+                        class="form-control"
+                        [(ngModel)]="investment.purchaseDate"
+                        name="purchaseDate">
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">Quantity</label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        [(ngModel)]="investment.quantity"
+                        (input)="calculateValue()"
+                        name="quantity">
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">Purchase Price</label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        [(ngModel)]="investment.purchasePrice"
+                        name="purchasePrice">
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">Current Price</label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        [(ngModel)]="investment.currentPrice"
+                        (input)="calculateValue()"
+                        name="currentPrice">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">Current Value</label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        [value]="investment.totalValue"
+                        readonly>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">Status</label>
+
+                    <select
+                        class="form-select"
+                        [(ngModel)]="investment.status"
+                        name="status">
+
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <button
+                class="btn btn-primary me-2"
+                type="submit">
+
+                Save
+
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                routerLink="/investments"
+                type="button">
+
+                Cancel
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

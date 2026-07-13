@@ -1,0 +1,133 @@
+<div class="card shadow">
+
+    <div class="card-header bg-primary text-white">
+
+        <h4>
+
+            {{ isEdit ? 'Edit Portfolio' : 'Add Portfolio' }}
+
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <form (ngSubmit)="savePortfolio()">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">Customer ID</label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        [(ngModel)]="portfolio.customerId"
+                        name="customerId"
+                        required>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">Portfolio Name</label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="portfolio.portfolioName"
+                        name="portfolioName"
+                        required>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">Portfolio Type</label>
+
+                    <select
+                        class="form-select"
+                        [(ngModel)]="portfolio.portfolioType"
+                        name="portfolioType">
+
+                        <option value="">Select</option>
+                        <option value="Equity">Equity</option>
+                        <option value="Debt">Debt</option>
+                        <option value="Hybrid">Hybrid</option>
+                        <option value="Mutual Fund">Mutual Fund</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">Risk Level</label>
+
+                    <select
+                        class="form-select"
+                        [(ngModel)]="portfolio.riskLevel"
+                        name="riskLevel">
+
+                        <option value="">Select</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">Total Value</label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        [(ngModel)]="portfolio.totalValue"
+                        name="totalValue">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">Status</label>
+
+                    <select
+                        class="form-select"
+                        [(ngModel)]="portfolio.status"
+                        name="status">
+
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn btn-primary me-2">
+
+                Save
+
+            </button>
+
+            <button
+                type="button"
+                class="btn btn-secondary"
+                routerLink="/portfolios">
+
+                Cancel
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
